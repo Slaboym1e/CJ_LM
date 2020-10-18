@@ -5,38 +5,18 @@ matrix::matrix(int rowSize, int colSize, int Init)
 {
 	this->rowsize = rowSize;
 	this->colsize = colSize;
-	__matrix = new int* [rowsize];
-		for (int i = 0; i < rowsize; i++)
-		{
-			__matrix[i] = new int[colsize];
-		}
-		for (int i = 0; i < rowsize; i++)
-		{
-			for (int j = 0; j < colsize; j++)
-			{
-				__matrix[i][j] = Init;
-			}
-		}
-}
-
-matrix::matrix(char* fileName)
-{
-	std::ifstream _input;
-	_input.open(fileName);
-	_input >> rowsize >> colsize;
-	__matrix = new int* [this->rowsize];
+	__matrix = new double* [rowsize];
 	for (int i = 0; i < rowsize; i++)
 	{
-		__matrix[i] = new int[colsize];
+		__matrix[i] = new double[colsize];
 	}
 	for (int i = 0; i < rowsize; i++)
 	{
 		for (int j = 0; j < colsize; j++)
 		{
-			_input >> __matrix[i][j];
+			__matrix[i][j] = Init;
 		}
 	}
-	_input.close();
 }
 
 matrix::~matrix()
@@ -64,10 +44,10 @@ matrix& matrix::operator=(matrix cur_mat)
 	delete[] __matrix;
 	this->rowsize = cur_mat.Get_rowSize();
 	this->colsize = cur_mat.Get_colSize();
-	__matrix = new int* [this->rowsize];
+	__matrix = new double* [this->rowsize];
 	for (int i = 0; i < rowsize; i++)
 	{
-		__matrix[i] = new int[colsize];
+		__matrix[i] = new double[colsize];
 	}
 	for (int i = 0; i < rowsize; i++)
 	{
