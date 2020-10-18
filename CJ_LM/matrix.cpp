@@ -10,11 +10,13 @@ matrix::matrix(int rowSize, int colSize, int Init)
 		{
 			__matrix[i] = new int[colsize];
 		}
-	/*_matrix.resize(rowSize);
-	for (int i = 0; i < _matrix.size(); i++)
-	{
-		_matrix[i].resize(colsize, Init);
-	}*/
+		for (int i = 0; i < rowsize; i++)
+		{
+			for (int j = 0; j < colsize; j++)
+			{
+				__matrix[i][j] = Init;
+			}
+		}
 }
 
 matrix::matrix(char* fileName)
@@ -27,11 +29,6 @@ matrix::matrix(char* fileName)
 	{
 		__matrix[i] = new int[colsize];
 	}
-	//_matrix.resize(rowsize);
-	/*for (int i = 0; i < _matrix.size(); i++)
-	{
-		_matrix[i].resize(colsize);
-	}*/
 	for (int i = 0; i < rowsize; i++)
 	{
 		for (int j = 0; j < colsize; j++)
@@ -62,7 +59,9 @@ matrix matrix::transposition()
 
 matrix& matrix::operator=(matrix cur_mat)
 {
-	delete __matrix;
+	for (int i = 0; i < rowsize; i++)
+		delete[] __matrix[i];
+	delete[] __matrix;
 	this->rowsize = cur_mat.Get_rowSize();
 	this->colsize = cur_mat.Get_colSize();
 	__matrix = new int* [this->rowsize];
@@ -70,11 +69,6 @@ matrix& matrix::operator=(matrix cur_mat)
 	{
 		__matrix[i] = new int[colsize];
 	}
-	//this->__matrix.resize(rowsize);
-	//for (int i = 0; i < _matrix.size(); i++)
-	//{
-	//	_matrix[i].resize(colsize);
-	//}
 	for (int i = 0; i < rowsize; i++)
 	{
 		for (int j = 0; j < colsize; j++)
@@ -84,8 +78,58 @@ matrix& matrix::operator=(matrix cur_mat)
 	}
 	return *this;
 }
-//
-//matrix operator*(matrix matrix1, matrix matrix2)
-//{
-//	return matrix();
-//}
+
+std::ostream& operator<<(std::ostream& ostr, matrix& _matrix)
+{
+	for (int i = 0; i < _matrix.Get_colSize(); i++)
+	{
+		for (int j = 0; j < _matrix.Get_rowSize(); j++)
+			ostr << _matrix.Get_m(j, i) << "\t";
+		ostr << std::endl;
+	}
+	return ostr;
+}
+
+matrix matrix::operator+=(matrix mat2)
+{
+	if (rowsize != mat2.Get_rowSize() || colsize != mat2.Get_colSize())
+		exit(EXIT_FAILURE);
+	for(int i=0;i < rowsize;i++)
+		for (int j = 0; j < colsize; j++)
+		{
+			__matrix[i][j] = __matrix[i][j]+ mat2.Get_m(i, j);
+		}
+	return *this;
+}
+
+matrix operator+(matrix mat1, matrix mat2)
+{
+	if (mat1.Get_rowSize() != mat2.Get_rowSize() || mat1.Get_colSize() != mat2.Get_colSize())
+		exit(EXIT_FAILURE);
+	matrix TempMat(mat1.Get_rowSize(), mat1.Get_colSize(), 0);
+	TempMat = mat1;
+	TempMat += mat2;
+	return TempMat;
+}
+
+matrix matrix::operator-=(matrix mat2)
+{
+	if (rowsize != mat2.Get_rowSize() || colsize != mat2.Get_colSize())
+		exit(EXIT_FAILURE);
+	for (int i = 0; i < rowsize; i++)
+		for (int j = 0; j < colsize; j++)
+		{
+			__matrix[i][j] = __matrix[i][j] - mat2.Get_m(i, j);
+		}
+	return *this;
+}
+
+matrix operator-(matrix mat1, matrix mat2)
+{
+	if (mat1.Get_rowSize() != mat2.Get_rowSize() || mat1.Get_colSize() != mat2.Get_colSize())
+		exit(EXIT_FAILURE);
+	matrix TempMat(mat1.Get_rowSize(), mat1.Get_colSize(), 0);
+	TempMat = mat1;
+	TempMat -= mat2;
+	return TempMat;
+}
