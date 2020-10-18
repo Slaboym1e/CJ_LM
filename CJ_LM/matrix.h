@@ -4,8 +4,6 @@ class matrix
 {
 public:
 	 matrix(int rowSize,int colSize,int Init);
-	 matrix(char* fileName);
-	 //matrix(matrix&);
 	 //
 	 ~matrix();
 	//
@@ -21,11 +19,11 @@ public:
 	//
 	friend std::ostream& operator<<(std::ostream& ostr, matrix& _matrix); //output operator
 	//
-	inline int& Get_m(int x, int y) { return this->__matrix[x][y]; }; //you can change the return value
+	inline double& Get_m(int x, int y) { return this->__matrix[x][y]; }; //you can change the return value
 	inline int Get_rowSize() { return this->rowsize; };
 	inline int Get_colSize() { return this->colsize; };
 private:
-	int** __matrix;
+	double** __matrix;
 	int rowsize, colsize;
 };
 

@@ -1,0 +1,8 @@
+﻿  pch.cpp
+  TESTS.cpp
+     Создается библиотека H:\DEV\CJ_LM\x64\Release\TESTS.lib и объект H:\DEV\CJ_LM\x64\Release\TESTS.exp
+  Создание кода
+  Previous IPDB not found, fall back to full compilation.
+  All 151 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  TESTS.vcxproj -> H:\DEV\CJ_LM\x64\Release\TESTS.dll
