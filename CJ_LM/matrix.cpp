@@ -139,9 +139,15 @@ matrix operator*(matrix mat1,matrix mat2)
 	if (mat1.Get_rowSize() != mat2.Get_colSize())
 		exit(EXIT_FAILURE);
 	matrix TempMat(mat1.Get_rowSize(), mat2.Get_colSize(), 0);
-	for (int i = 0; i < TempMat.Get_rowSize(); i++)
-		for (int j = 0; j < TempMat.Get_colSize(); j++)
-			for(int k=0;k<mat2.Get_colSize();k++)
-			TempMat.Get_m(i,j) += mat1.Get_m(i,k) * mat2.Get_m(k, j);
+	for (int i = 0; i < mat1.Get_rowSize(); i++)
+		for (int j = 0; j < mat2.Get_colSize(); j++)
+		{
+			for (int k = 0; k < mat1.Get_colSize(); k++)
+			{
+				TempMat.Get_m(i, j) += mat1.Get_m(i, k) * mat2.Get_m(k, j);
+				//std::cout << mat1.Get_m(i, k)  << "  " << mat2.Get_m(k, j) << "     ";
+			}
+			//std::cout << std::endl;
+		}
 	return TempMat;
 }
