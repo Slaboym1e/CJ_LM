@@ -97,7 +97,7 @@ matrix matrix::operator+=(matrix mat2)
 	for(int i=0;i < rowsize;i++)
 		for (int j = 0; j < colsize; j++)
 		{
-			__matrix[i][j] = __matrix[i][j]+ mat2.Get_m(i, j);
+			__matrix[i][j] += mat2.Get_m(i, j);
 		}
 	return *this;
 }
@@ -131,5 +131,23 @@ matrix operator-(matrix mat1, matrix mat2)
 	matrix TempMat(mat1.Get_rowSize(), mat1.Get_colSize(), 0);
 	TempMat = mat1;
 	TempMat -= mat2;
+	return TempMat;
+}
+
+matrix operator*(matrix mat1,matrix mat2)
+{
+	if (mat1.Get_rowSize() != mat2.Get_colSize())
+		exit(EXIT_FAILURE);
+	matrix TempMat(mat1.Get_rowSize(), mat2.Get_colSize(), 0);
+	for (int i = 0; i < mat1.Get_rowSize(); i++)
+		for (int j = 0; j < mat2.Get_colSize(); j++)
+		{
+			for (int k = 0; k < mat1.Get_colSize(); k++)
+			{
+				TempMat.Get_m(i, j) += mat1.Get_m(k, j) * mat2.Get_m(i, k);
+				//std::cout << mat1.Get_m(i, k)  << "  " << mat2.Get_m(k, j) << "     ";
+			}
+			//std::cout << std::endl;
+		}
 	return TempMat;
 }

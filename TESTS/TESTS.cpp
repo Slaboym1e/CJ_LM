@@ -63,5 +63,19 @@ namespace TESTS
 					counter++;
 				}
 		}
+		TEST_METHOD(testcomp)
+		{
+			matrix m1(2, 2, 0);
+			matrix m2(2, 2, 0);
+			m1.Get_m(0, 0) = m2.Get_m(1, 1) = 2;
+			m1.Get_m(1, 0) = m2.Get_m(0, 0) = 7;
+			m1.Get_m(0, 1) = m2.Get_m(1, 0) = 3;
+			m1.Get_m(1, 1) = m2.Get_m(0, 1) = 4;
+			m2 = m1 * m2;
+			Assert::AreEqual(m2.Get_m(0, 0),42);
+			Assert::AreEqual(m2.Get_m(1, 0), 20);
+			Assert::AreEqual(m2.Get_m(0, 1), 37);
+			Assert::AreEqual(m2.Get_m(1, 1), 17);
+		}
 	};
 }
