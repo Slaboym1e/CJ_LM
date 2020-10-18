@@ -34,3 +34,5 @@
 *.db-shm
 *.db-wal
 *.opendb
+.vs/CJ_LM/v16/TestStore/0/000.testlog
+.vs/CJ_LM/v16/ipch/AutoPCH/477774df58bdedb0/MATRIX.ipch
