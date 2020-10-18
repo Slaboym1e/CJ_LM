@@ -144,7 +144,7 @@ matrix operator*(matrix mat1,matrix mat2)
 		{
 			for (int k = 0; k < mat1.Get_colSize(); k++)
 			{
-				TempMat.Get_m(i, j) += mat1.Get_m(i, k) * mat2.Get_m(k, j);
+				TempMat.Get_m(i, j) += mat1.Get_m(k, j) * mat2.Get_m(i, k);
 				//std::cout << mat1.Get_m(i, k)  << "  " << mat2.Get_m(k, j) << "     ";
 			}
 			//std::cout << std::endl;
